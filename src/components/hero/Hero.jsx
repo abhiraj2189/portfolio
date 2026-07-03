@@ -8,12 +8,11 @@ export default function Hero() {
     <section className="relative min-h-screen overflow-hidden bg-[#050816] flex items-center">
       <BackgroundGlow />
 
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center px-10 py-32 lg:py-10">
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 md:gap-14 lg:gap-20 items-center px-5 sm:px-8 md:px-10 py-24 md:py-32 lg:py-10">
         <FloatingPhoto />
         <GlassCard />
       </div>
 
-      {/* Scroll down indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

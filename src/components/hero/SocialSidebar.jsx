@@ -14,7 +14,7 @@ export default function SocialSidebar() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1.3, duration: 0.8 }}
-      className="flex justify-center items-center gap-6 mt-10"
+      className="flex justify-center items-center gap-3 sm:gap-4 md:gap-6 mt-5 md:mt-10"
     >
       {socials.map((s, i) => (
         <motion.a
@@ -25,7 +25,7 @@ export default function SocialSidebar() {
           whileHover={{ scale: 1.18, y: -5 }}
           whileTap={{ scale: 0.9 }}
           transition={{ type: "spring", stiffness: 300 }}
-          className="w-20 h-20 rounded-full border border-white/15 bg-white/5 backdrop-blur-xl flex items-center justify-center text-5xl transition-colors duration-300"
+          className="w-11 h-11 sm:w-14 sm:h-14 md:w-20 md:h-20 rounded-full border border-white/15 bg-white/5 backdrop-blur-xl flex items-center justify-center text-xl sm:text-3xl md:text-5xl transition-colors duration-300"
           style={{ color: s.color }}
           onMouseEnter={(e) => {
             e.currentTarget.style.backgroundColor = s.hoverBg;
