@@ -51,3 +51,14 @@ body {
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+section {
+  overflow-x: clip;
+}
