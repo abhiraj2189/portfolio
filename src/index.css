@@ -1,24 +1,47 @@
 @import "tailwindcss";
 
+/* ---------- Design Tokens ---------- */
+
+:root {
+  --bg: #0b0f14;
+  --surface: #12171f;
+  --surface-hover: #171d27;
+  --border: #232b36;
+  --border-hover: #3a4655;
+
+  --text: #e6edf3;
+  --text-muted: #8b98a5;
+  --text-dim: #5a6472;
+
+  --amber: #f5a623;
+  --amber-soft: rgba(245, 166, 35, 0.12);
+  --green: #7ed9a6;
+  --green-soft: rgba(126, 217, 166, 0.12);
+  --blue: #8ab4f8;
+
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Courier New", monospace;
+}
+
 /* ---------- Base ---------- */
 
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  scroll-padding-top: 84px;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background: #050816;
-  color: #ffffff;
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -30,117 +53,74 @@ body {
   overflow-x: hidden;
 }
 
-/* ---------- Responsive Images ---------- */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
 
-img,
-svg,
-video,
-canvas {
+.font-mono-ui {
+  font-family: var(--font-mono);
+}
+
+img, svg, video, canvas {
   display: block;
   max-width: 100%;
   height: auto;
 }
-
-/* ---------- Sections ---------- */
 
 section {
   width: 100%;
   overflow-x: hidden;
 }
 
-/* ---------- Cursor ---------- */
-
-@media (pointer: fine) and (min-width: 1024px) {
-  * {
-    cursor: none !important;
-  }
-}
-
-/* ---------- Selection ---------- */
+/* ---------- Selection & Scrollbar ---------- */
 
 ::selection {
-  background: rgba(34, 211, 238, 0.35);
+  background: rgba(245, 166, 35, 0.3);
   color: white;
 }
-
-/* ---------- Scrollbar ---------- */
 
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #050816;
+  background: var(--bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(#22d3ee, #3b82f6);
+  background: var(--border-hover);
   border-radius: 999px;
 }
 
-/* ---------- Slow Spin ---------- */
+/* ---------- Focus (accessibility) ---------- */
 
-@keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
 }
 
-.animate-spin-slow {
-  animation: spin-slow 10s linear infinite;
+/* ---------- Blinking cursor (single signature animation) ---------- */
+
+@keyframes blink {
+  0%, 45% { opacity: 1; }
+  50%, 95% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
-/* ---------- Marquee ---------- */
-
-@keyframes marquee {
-  from {
-    transform: translateX(0%);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
+.cursor-blink {
+  animation: blink 1.1s step-end infinite;
 }
 
-.animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 28s linear infinite;
-  will-change: transform;
-}
+/* ---------- Reduced motion ---------- */
 
-.animate-marquee:hover {
-  animation-play-state: paused;
-}
-
-/* ---------- Performance ---------- */
-
-.blur-layer {
-  will-change: transform;
-  transform: translateZ(0);
-}
-
-.glass {
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .cursor-blink { animation: none; }
 }
 
 /* ---------- Mobile ---------- */
 
 @media (max-width: 768px) {
-  body {
-    overflow-x: hidden;
-  }
-
-  h1 {
-    line-height: 1.1;
-  }
-
-  p {
-    line-height: 1.7;
-  }
+  p { line-height: 1.7; }
 }

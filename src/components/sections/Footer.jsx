@@ -1,66 +1,65 @@
-import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaInstagram, FaArrowUp } from "react-icons/fa";
-import { animateScroll as scroll } from "react-scroll";
+
+const links = ["about", "skills", "projects", "experience", "contact"];
 
 export default function Footer() {
+  const go = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+
   return (
-    <motion.footer
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
-      className="bg-[#030712] border-t border-cyan-500/20 pt-16 pb-10 px-6"
-    >
-      <div className="max-w-7xl mx-auto">
+    <footer className="bg-[#0b0f14] border-t border-[#171d27] pt-14 pb-8 px-5 lg:px-8">
+      <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-3 gap-10">
           <div>
-            <h2 className="text-3xl font-bold text-white">
-              Abhiraj<span className="text-cyan-400">.</span>
+            <h2 className="font-mono-ui text-xl text-[#e6edf3]">
+              <span className="text-[#f5a623]">~/</span>abhiraj
             </h2>
-            <p className="text-gray-400 mt-5 leading-7">
+            <p className="text-[#5a6472] text-sm mt-4 leading-6">
               Python Developer • AI Learner • Data Science Enthusiast
             </p>
           </div>
 
           <div>
-            <h3 className="text-white text-xl font-semibold mb-5">Quick Links</h3>
-            <div className="space-y-3 text-gray-400">
-              <p className="hover:text-cyan-400 cursor-pointer transition-colors w-fit">Home</p>
-              <p className="hover:text-cyan-400 cursor-pointer transition-colors w-fit">About</p>
-              <p className="hover:text-cyan-400 cursor-pointer transition-colors w-fit">Skills</p>
-              <p className="hover:text-cyan-400 cursor-pointer transition-colors w-fit">Projects</p>
-              <p className="hover:text-cyan-400 cursor-pointer transition-colors w-fit">Contact</p>
+            <h3 className="text-[#e6edf3] font-semibold mb-4 text-sm">Quick Links</h3>
+            <div className="space-y-2.5">
+              {links.map((l) => (
+                <button
+                  key={l}
+                  onClick={() => go(l)}
+                  className="block text-[#8b98a5] hover:text-[#f5a623] text-sm capitalize transition-colors"
+                >
+                  {l}
+                </button>
+              ))}
             </div>
           </div>
 
           <div>
-            <h3 className="text-white text-xl font-semibold mb-5">Connect</h3>
-            <div className="flex gap-5">
-              <motion.a whileHover={{ scale: 1.15, y: -3 }} href="https://github.com/" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-white/5 border border-cyan-500 flex items-center justify-center text-white hover:bg-cyan-500 transition">
+            <h3 className="text-[#e6edf3] font-semibold mb-4 text-sm">Connect</h3>
+            <div className="flex gap-3">
+              <a href="https://github.com/abhiraj2189" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full border border-[#232b36] flex items-center justify-center text-[#e6edf3] hover:border-[#f5a623]/50 hover:text-[#f5a623] transition-colors">
                 <FaGithub />
-              </motion.a>
-              <motion.a whileHover={{ scale: 1.15, y: -3 }} href="https://linkedin.com/" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-white/5 border border-cyan-500 flex items-center justify-center text-white hover:bg-cyan-500 transition">
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full border border-[#232b36] flex items-center justify-center text-[#e6edf3] hover:border-[#f5a623]/50 hover:text-[#f5a623] transition-colors">
                 <FaLinkedin />
-              </motion.a>
-              <motion.a whileHover={{ scale: 1.15, y: -3 }} href="https://instagram.com/" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-white/5 border border-cyan-500 flex items-center justify-center text-white hover:bg-cyan-500 transition">
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full border border-[#232b36] flex items-center justify-center text-[#e6edf3] hover:border-[#f5a623]/50 hover:text-[#f5a623] transition-colors">
                 <FaInstagram />
-              </motion.a>
+              </a>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-14 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-500 text-center">© 2026 Abhiraj Kumar. All Rights Reserved.</p>
-          <motion.button
-            whileHover={{ scale: 1.15 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={() => scroll.scrollToTop()}
-            className="mt-5 md:mt-0 w-12 h-12 rounded-full bg-cyan-500 text-white flex items-center justify-center shadow-[0_0_20px_rgba(34,211,238,0.5)]"
+        <div className="border-t border-[#171d27] mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-[#5a6472] text-sm text-center">© 2026 Abhiraj Kumar. All rights reserved.</p>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            aria-label="Scroll to top"
+            className="w-10 h-10 rounded-full bg-[#f5a623] text-[#0b0f14] flex items-center justify-center hover:bg-[#ffb84d] transition-colors"
           >
             <FaArrowUp />
-          </motion.button>
+          </button>
         </div>
       </div>
-    </motion.footer>
+    </footer>
   );
 }

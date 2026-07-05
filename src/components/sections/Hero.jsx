@@ -1,105 +1,104 @@
 import { motion } from "framer-motion";
-import { TypeAnimation } from "react-type-animation";
+import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import photo from "../../assets/images/photo.png";
-import {
-  FaGithub,
-  FaLinkedin,
-  FaInstagram,
-  FaTwitter,
-} from "react-icons/fa";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#050816] flex items-center">
+    <section
+      id="hero"
+      className="relative bg-[#0b0f14] pt-28 pb-16 lg:pt-36 lg:pb-24"
+    >
+      <div className="max-w-6xl mx-auto px-5 lg:px-8 grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
 
-      {/* subtle grid only (clean look) */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 items-center gap-20 px-10 relative z-10">
-
-        {/* LEFT */}
+        {/* LEFT — code block signature */}
         <motion.div
-          initial={{ x: -150, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1.2 }}
-          className="relative flex justify-center"
+          initial="hidden"
+          animate="show"
+          variants={fadeUp}
         >
+          <div className="rounded-xl border border-[#232b36] bg-[#12171f] overflow-hidden shadow-lg">
+            {/* window chrome */}
+            <div className="flex items-center gap-2 px-4 py-3 border-b border-[#232b36]">
+              <span className="w-3 h-3 rounded-full bg-[#5a6472]/40" />
+              <span className="w-3 h-3 rounded-full bg-[#5a6472]/40" />
+              <span className="w-3 h-3 rounded-full bg-[#5a6472]/40" />
+              <span className="ml-2 font-mono-ui text-xs text-[#5a6472]">about_me.py</span>
+            </div>
 
-          {/* PHOTO */}
-          <div className="relative z-20 w-[640px] lg:w-[720px]">
-            <motion.img
+            <div className="p-5 lg:p-7 font-mono-ui text-[13px] lg:text-[15px] leading-7 overflow-x-auto">
+              <p><span className="text-[#8ab4f8]">class</span> <span className="text-[#7ed9a6]">Abhiraj</span>:</p>
+              <p className="pl-4"><span className="text-[#e6edf3]">role</span> = <span className="text-[#f5a623]">"Python & AI Developer"</span></p>
+              <p className="pl-4"><span className="text-[#e6edf3]">study</span> = <span className="text-[#f5a623]">"BCA, 2nd Year — AKU Patna"</span></p>
+              <p className="pl-4"><span className="text-[#e6edf3]">badge</span> = <span className="text-[#f5a623]">"Google Gemini Student Ambassador"</span></p>
+              <p className="pl-4"><span className="text-[#e6edf3]">goal</span> = <span className="text-[#f5a623]">"AI Engineer, building real products"</span></p>
+              <p className="mt-3 text-[#5a6472]"># currently learning ML & shipping projects</p>
+              <p className="mt-3">
+                <span className="text-[#8ab4f8]">print</span>(<span className="text-[#f5a623]">"Let's build something."</span>)
+                <span className="cursor-blink text-[#f5a623]">▍</span>
+              </p>
+            </div>
+          </div>
+
+          <motion.div
+            initial="hidden"
+            animate="show"
+            variants={fadeUp}
+            transition={{ delay: 0.15 }}
+            className="flex items-center gap-3 mt-6"
+          >
+            <a
+              href="#projects"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="px-5 py-3 rounded-md bg-[#f5a623] text-[#0b0f14] font-semibold text-sm hover:bg-[#ffb84d] transition-colors"
+            >
+              View Projects
+            </a>
+            <a
+              href="/resume.pdf"
+              download="Abhiraj_Resume.pdf"
+              className="px-5 py-3 rounded-md border border-[#232b36] text-[#e6edf3] font-semibold text-sm hover:border-[#3a4655] hover:bg-[#12171f] transition-colors"
+            >
+              Download Resume
+            </a>
+          </motion.div>
+        </motion.div>
+
+        {/* RIGHT — photo */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="flex flex-col items-center gap-6"
+        >
+          <div className="relative">
+            <div className="absolute -inset-2 rounded-2xl border border-[#f5a623]/30" />
+            <img
               src={photo}
-              alt="Abhiraj"
-              animate={{ y: [0, -15, 0] }}
-              transition={{ duration: 4, repeat: Infinity }}
-              className="w-full object-contain drop-shadow-[0_0_80px_rgba(0,229,255,0.3)]"
+              alt="Abhiraj Kumar"
+              className="relative w-[220px] sm:w-[260px] lg:w-[300px] rounded-2xl object-cover border border-[#232b36]"
             />
           </div>
 
-          {/* Social icons */}
-          <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 z-30">
-            <div className="flex flex-col gap-5 rounded-full bg-white/5 backdrop-blur-sm lg:backdrop-blur-xl border border-white/10 p-4">
-              <FaGithub className="text-2xl text-white hover:text-cyan-400 cursor-pointer" />
-              <FaLinkedin className="text-2xl text-white hover:text-cyan-400 cursor-pointer" />
-              <FaInstagram className="text-2xl text-white hover:text-cyan-400 cursor-pointer" />
-              <FaTwitter className="text-2xl text-white hover:text-cyan-400 cursor-pointer" />
-            </div>
+          <div className="flex items-center gap-3">
+            <a href="https://github.com/abhiraj2189" target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full border border-[#232b36] flex items-center justify-center text-[#e6edf3] hover:border-[#f5a623]/50 hover:text-[#f5a623] transition-colors">
+              <FaGithub />
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full border border-[#232b36] flex items-center justify-center text-[#e6edf3] hover:border-[#f5a623]/50 hover:text-[#f5a623] transition-colors">
+              <FaLinkedin />
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full border border-[#232b36] flex items-center justify-center text-[#e6edf3] hover:border-[#f5a623]/50 hover:text-[#f5a623] transition-colors">
+              <FaInstagram />
+            </a>
           </div>
-
         </motion.div>
-
-        {/* RIGHT */}
-        <motion.div
-          initial={{ x: 120, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1 }}
-        >
-
-          <div className="rounded-3xl backdrop-blur-sm lg:backdrop-blur-2xl bg-white/5 p-10 border border-white/10">
-
-            <span className="px-5 py-2 rounded-full bg-white/10 text-cyan-300 text-sm">
-              👋 Hello I'm
-            </span>
-
-            <h1 className="text-6xl font-bold text-white mt-8">
-              Abhiraj <span className="text-cyan-400">Kumar</span>
-            </h1>
-
-            <TypeAnimation
-              sequence={[
-                "Python Developer",
-                2000,
-                "AI Engineer",
-                2000,
-                "Data Science Enthusiast",
-                2000,
-              ]}
-              speed={50}
-              repeat={Infinity}
-              wrapper="h2"
-              className="text-3xl text-cyan-400 font-semibold mt-6"
-            />
-
-            <p className="text-gray-300 leading-8 mt-8">
-              Passionate BCA student focused on Python,
-              Artificial Intelligence, Machine Learning,
-              Data Science and Modern Web Development.
-            </p>
-
-            <div className="flex gap-5 mt-10">
-              <button className="px-8 py-4 rounded-xl bg-cyan-500 text-white font-semibold hover:scale-105 duration-300">
-                Download Resume
-              </button>
-
-              <button className="px-8 py-4 rounded-xl border border-cyan-400 text-cyan-300 hover:bg-cyan-500 hover:text-white duration-300">
-                View Projects
-              </button>
-            </div>
-
-          </div>
-
-        </motion.div>
-
       </div>
     </section>
   );

@@ -1,111 +1,94 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 
-const tabs = [
-  { id: "about", label: "About" },
-  { id: "skills", label: "Skills" },
-  { id: "projects", label: "Projects" },
-  { id: "experience", label: "Experience" },
-  { id: "github", label: "GitHub" },
-  { id: "certifications", label: "Certificates" },
-  { id: "contact", label: "Contact" },
+const links = [
+  { id: "about", label: "about" },
+  { id: "skills", label: "skills" },
+  { id: "projects", label: "projects" },
+  { id: "experience", label: "journey" },
+  { id: "contact", label: "contact" },
 ];
 
-export default function Navbar({ activeTab, setActiveTab }) {
+export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const go = (id) => {
+    setMenuOpen(false);
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
-    <>
-      <motion.header
-        initial={{ y: -80 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="fixed top-0 left-0 w-full z-50"
-      >
-        <div className="max-w-7xl mx-auto px-5 lg:px-8 py-4">
+    <header
+      className={`fixed top-0 left-0 w-full z-50 border-b transition-colors duration-300 ${
+        scrolled
+          ? "bg-[#0b0f14] border-[#232b36]"
+          : "bg-[#0b0f14]/80 border-transparent"
+      }`}
+    >
+      <div className="max-w-6xl mx-auto px-5 lg:px-8 h-16 flex items-center justify-between">
+        <button
+          onClick={() => go("hero")}
+          className="font-mono-ui text-[15px] text-[#e6edf3] flex items-center gap-1.5"
+        >
+          <span className="text-[#f5a623]">~/</span>
+          <span className="font-semibold">abhiraj</span>
+        </button>
 
-          <div className="rounded-2xl border border-white/10 bg-[#050816]/95 lg:bg-[#050816]/70 backdrop-blur-none lg:backdrop-blur-2xl shadow-xl">
-
-            <div className="flex items-center justify-between h-16 px-6">
-
-              {/* Logo */}
-              <motion.h1
-                whileHover={{ scale: 1.05 }}
-                className="text-2xl font-bold cursor-pointer"
-              >
-                <span className="text-white">Abhiraj</span>
-                <span className="text-cyan-400">.</span>
-              </motion.h1>
-
-              {/* Desktop Navigation */}
-              <div className="hidden lg:flex items-center gap-2">
-
-                {tabs.map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveTab(tab.id)}
-                    className={`px-4 py-2 rounded-xl transition-all duration-300 ${
-                      activeTab === tab.id
-                        ? "bg-cyan-500 text-white shadow-[0_0_20px_rgba(0,229,255,.5)]"
-                        : "text-gray-300 hover:bg-white/10 hover:text-white"
-                    }`}
-                  >
-                    {tab.label}
-                  </button>
-                ))}
-
-              </div>
-
-              {/* Mobile Menu Button */}
-              <button
-                className="lg:hidden text-white text-3xl"
-                onClick={() => setMenuOpen(!menuOpen)}
-              >
-                {menuOpen ? <HiX /> : <HiMenuAlt3 />}
-              </button>
-
-            </div>
-
-          </div>
-
-        </div>
-      </motion.header>
-
-      {/* Mobile Drawer */}
-      <AnimatePresence>
-
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            className="fixed top-24 left-5 right-5 z-40 rounded-2xl border border-white/10 bg-[#0B1120]/95 backdrop-blur-2xl p-5 lg:hidden"
+        <nav className="hidden md:flex items-center gap-1">
+          {links.map((l) => (
+            <button
+              key={l.id}
+              onClick={() => go(l.id)}
+              className="font-mono-ui text-sm text-[#8b98a5] hover:text-[#e6edf3] px-3 py-2 rounded-md hover:bg-[#12171f] transition-colors"
+            >
+              {l.label}
+            </button>
+          ))}
+          <a
+            href="/resume.pdf"
+            download="Abhiraj_Resume.pdf"
+            className="ml-2 font-mono-ui text-sm px-4 py-2 rounded-md bg-[#f5a623] text-[#0b0f14] font-semibold hover:bg-[#ffb84d] transition-colors"
           >
-            <div className="flex flex-col gap-3">
+            resume ↓
+          </a>
+        </nav>
 
-              {tabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => {
-                    setActiveTab(tab.id);
-                    setMenuOpen(false);
-                  }}
-                  className={`text-left px-4 py-3 rounded-xl transition-all duration-300 ${
-                    activeTab === tab.id
-                      ? "bg-cyan-500 text-white"
-                      : "text-gray-300 hover:bg-white/10"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
+        <button
+          className="md:hidden text-2xl text-[#e6edf3]"
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-label="Toggle menu"
+        >
+          {menuOpen ? <HiX /> : <HiMenuAlt3 />}
+        </button>
+      </div>
 
-            </div>
-          </motion.div>
-        )}
-
-      </AnimatePresence>
-    </>
+      {menuOpen && (
+        <div className="md:hidden bg-[#0b0f14] border-t border-[#232b36] px-5 py-4 flex flex-col gap-1">
+          {links.map((l) => (
+            <button
+              key={l.id}
+              onClick={() => go(l.id)}
+              className="font-mono-ui text-left text-[#8b98a5] hover:text-[#e6edf3] px-3 py-3 rounded-md hover:bg-[#12171f] transition-colors"
+            >
+              {l.label}
+            </button>
+          ))}
+          <a
+            href="/resume.pdf"
+            download="Abhiraj_Resume.pdf"
+            className="mt-2 text-center font-mono-ui text-sm px-4 py-3 rounded-md bg-[#f5a623] text-[#0b0f14] font-semibold"
+          >
+            resume ↓
+          </a>
+        </div>
+      )}
+    </header>
   );
 }
