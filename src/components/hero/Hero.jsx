@@ -18,9 +18,9 @@ export default function Hero({ activeTab, setActiveTab }) {
     <section className="relative bg-[#050816] overflow-hidden">
 
       {/* Background */}
-      <div className="absolute -top-40 -left-40 w-[300px] h-[300px] lg:w-[650px] lg:h-[650px] rounded-full bg-cyan-500/15 blur-[120px]" />
+      <div className="absolute -top-40 -left-40 w-[300px] h-[300px] lg:w-[650px] lg:h-[650px] rounded-full bg-cyan-500/15 blur-[50px] lg:blur-[120px]" />
 
-      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] lg:w-[650px] lg:h-[650px] rounded-full bg-violet-500/15 blur-[120px]" />
+      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] lg:w-[650px] lg:h-[650px] rounded-full bg-violet-500/15 blur-[50px] lg:blur-[120px]" />
 
       <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.08)_1px,transparent_1px)] bg-[size:60px_60px]" />
 
@@ -49,14 +49,14 @@ export default function Hero({ activeTab, setActiveTab }) {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: .8 }}
           >
-            <GlassCard />
+            <GlassCard setActiveTab={setActiveTab} />
           </motion.div>
 
         </div>
 
         {/* Premium Tab Navigation */}
 
-        <div className="mt-12 flex justify-center">
+        <div className="mt-12 hidden lg:flex justify-center">
 
           <div className="flex flex-wrap justify-center gap-3 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 p-3">
 

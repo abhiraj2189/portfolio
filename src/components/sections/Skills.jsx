@@ -33,11 +33,11 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="relative overflow-hidden bg-[#050816] py-20 lg:py-24"
+      className="relative overflow-hidden bg-[#050816] py-14 lg:py-16"
     >
       {/* Glow */}
-      <div className="absolute left-0 top-20 w-72 h-72 rounded-full bg-cyan-500/10 blur-[120px]" />
-      <div className="absolute right-0 bottom-20 w-72 h-72 rounded-full bg-blue-500/10 blur-[120px]" />
+      <div className="absolute left-0 top-20 w-72 h-72 rounded-full bg-cyan-500/10 blur-[50px] lg:blur-[120px]" />
+      <div className="absolute right-0 bottom-20 w-72 h-72 rounded-full bg-blue-500/10 blur-[50px] lg:blur-[120px]" />
 
       <div className="relative max-w-7xl mx-auto px-6">
 

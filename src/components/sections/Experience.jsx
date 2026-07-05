@@ -70,11 +70,11 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="relative bg-[#050816] py-20 lg:py-24 overflow-hidden"
+      className="relative bg-[#050816] py-14 lg:py-16 overflow-hidden"
     >
       {/* Glow */}
-      <div className="absolute left-0 top-20 w-72 h-72 rounded-full bg-cyan-500/10 blur-[120px]" />
-      <div className="absolute right-0 bottom-20 w-72 h-72 rounded-full bg-violet-500/10 blur-[120px]" />
+      <div className="absolute left-0 top-20 w-72 h-72 rounded-full bg-cyan-500/10 blur-[50px] lg:blur-[120px]" />
+      <div className="absolute right-0 bottom-20 w-72 h-72 rounded-full bg-violet-500/10 blur-[50px] lg:blur-[120px]" />
 
       <div className="relative max-w-5xl mx-auto px-6">
 

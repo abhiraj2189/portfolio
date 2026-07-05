@@ -4,7 +4,7 @@ import GlowButton from "../ui/GlowButton";
 
 export default function Contact() {
   return (
-    <section id="contact" className="min-h-screen bg-[#050816] px-6 py-24">
+    <section id="contact" className="bg-[#050816] px-6 py-16 lg:py-20">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 60 }}

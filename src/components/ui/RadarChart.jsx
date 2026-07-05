@@ -26,7 +26,7 @@ export default function RadarChart({ data }) {
 
   return (
     <div className="relative flex justify-center">
-      <div className="absolute w-[420px] h-[420px] rounded-full bg-cyan-500/10 blur-[100px] pointer-events-none" />
+      <div className="absolute w-[420px] h-[420px] rounded-full bg-cyan-500/10 blur-[45px] lg:blur-[100px] pointer-events-none" />
 
       <svg viewBox={`0 0 ${SIZE} ${SIZE}`} className="relative w-full max-w-[440px] overflow-visible">
         <defs>

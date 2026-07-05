@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 
-export default function GlassCard() {
+export default function GlassCard({ setActiveTab }) {
   return (
     <motion.div
       initial={{ opacity: 0, x: 80 }}
@@ -60,7 +60,9 @@ export default function GlassCard() {
 
           <div className="mt-10 flex flex-wrap gap-4">
 
-            <button
+            <a
+              href="/resume.pdf"
+              download="Abhiraj_Resume.pdf"
               className="
               px-6
               py-3
@@ -73,12 +75,15 @@ export default function GlassCard() {
               hover:scale-105
               duration-300
               shadow-[0_0_30px_rgba(0,229,255,0.35)]
+              inline-block
+              text-center
             "
             >
               Download Resume
-            </button>
+            </a>
 
             <button
+              onClick={() => setActiveTab && setActiveTab("projects")}
               className="
               px-6
               py-3

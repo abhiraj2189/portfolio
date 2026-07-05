@@ -31,11 +31,11 @@ export default function Certifications() {
   return (
     <section
       id="certifications"
-      className="relative bg-[#050816] py-20 lg:py-24 overflow-hidden"
+      className="relative bg-[#050816] py-14 lg:py-16 overflow-hidden"
     >
       {/* Glow */}
-      <div className="absolute top-0 left-1/3 w-72 h-72 bg-cyan-500/10 blur-[120px] rounded-full" />
-      <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-violet-500/10 blur-[120px] rounded-full" />
+      <div className="absolute top-0 left-1/3 w-72 h-72 bg-cyan-500/10 blur-[50px] lg:blur-[120px] rounded-full" />
+      <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-violet-500/10 blur-[50px] lg:blur-[120px] rounded-full" />
 
       <div className="relative max-w-7xl mx-auto px-6">
 

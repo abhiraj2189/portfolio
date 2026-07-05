@@ -33,13 +33,13 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative overflow-hidden bg-[#050816] py-20 lg:py-24"
+      className="relative overflow-hidden bg-[#050816] py-14 lg:py-16"
     >
       {/* Background Glow */}
 
-      <div className="absolute top-0 left-0 w-72 h-72 bg-cyan-500/10 blur-[120px] rounded-full" />
+      <div className="absolute top-0 left-0 w-72 h-72 bg-cyan-500/10 blur-[50px] lg:blur-[120px] rounded-full" />
 
-      <div className="absolute bottom-0 right-0 w-72 h-72 bg-violet-500/10 blur-[120px] rounded-full" />
+      <div className="absolute bottom-0 right-0 w-72 h-72 bg-violet-500/10 blur-[50px] lg:blur-[120px] rounded-full" />
 
       <div className="relative max-w-7xl mx-auto px-6">
 
