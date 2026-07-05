@@ -5,90 +5,183 @@ import { FiExternalLink } from "react-icons/fi";
 const projects = [
   {
     title: "3D Portfolio Website",
-    description: "Modern portfolio built using React, Tailwind CSS, Framer Motion and Three.js.",
-    tech: ["React", "Tailwind", "Three.js"],
+    description:
+      "Premium portfolio built with React, Tailwind CSS and Framer Motion featuring modern animations.",
+    tech: ["React", "Tailwind", "Framer Motion"],
     github: "#",
     live: "#",
+    emoji: "🌐",
   },
   {
     title: "Python Data Analysis",
-    description: "Data cleaning, visualization and analysis using Python libraries.",
+    description:
+      "Data cleaning, visualization and dashboard creation using Pandas, NumPy and Matplotlib.",
     tech: ["Python", "Pandas", "Matplotlib"],
     github: "#",
     live: "#",
+    emoji: "📊",
   },
   {
     title: "AI Chat Assistant",
-    description: "An AI chatbot project with a modern responsive interface.",
-    tech: ["Python", "AI", "API"],
+    description:
+      "Modern AI chatbot powered by APIs with responsive UI and smart conversations.",
+    tech: ["Python", "OpenAI", "API"],
     github: "#",
     live: "#",
+    emoji: "🤖",
   },
 ];
 
-const container = { hidden: {}, show: { transition: { staggerChildren: 0.15 } } };
-const item = {
-  hidden: { opacity: 0, y: 50 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
-};
-
 export default function Projects() {
   return (
-    <section id="projects" className="min-h-screen bg-[#0B1120] py-24 px-8">
-      <div className="max-w-7xl mx-auto">
-        <motion.h2
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-5xl font-bold text-center text-white mb-20"
-        >
-          Featured Projects
-        </motion.h2>
+    <section
+      id="projects"
+      className="relative bg-[#050816] py-20 lg:py-24 overflow-hidden"
+    >
+      {/* Background Glow */}
+      <div className="absolute left-0 top-10 w-72 h-72 rounded-full bg-cyan-500/10 blur-[120px]" />
+      <div className="absolute right-0 bottom-10 w-72 h-72 rounded-full bg-violet-500/10 blur-[120px]" />
 
+      <div className="relative max-w-7xl mx-auto px-6">
+
+        {/* Heading */}
         <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.15 }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-10"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: .6 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
         >
+          <span className="text-cyan-400 uppercase tracking-[6px]">
+            Portfolio
+          </span>
+
+          <h2 className="mt-4 text-4xl md:text-5xl font-bold text-white">
+            Featured Projects
+          </h2>
+        </motion.div>
+
+        {/* Cards */}
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+
           {projects.map((project, index) => (
+
             <motion.div
               key={index}
-              variants={item}
-              whileHover={{ scale: 1.04, rotateX: 4, rotateY: 4 }}
-              transition={{ type: "spring", stiffness: 220 }}
-              className="relative rounded-3xl overflow-hidden border border-blue-500/20 bg-white/5 backdrop-blur-xl shadow-[0_0_20px_rgba(59,130,246,.15)] hover:shadow-[0_0_50px_rgba(59,130,246,.6)] duration-500"
+              initial={{ opacity: 0, y: 35 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * .15 }}
+              viewport={{ once: true }}
+              whileHover={{
+                y: -8,
+              }}
+              className="
+                rounded-3xl
+                border
+                border-white/10
+                bg-white/5
+                backdrop-blur-xl
+                overflow-hidden
+                hover:border-cyan-400/40
+                hover:shadow-[0_0_35px_rgba(34,211,238,.25)]
+                transition-all
+              "
             >
-              <div className="h-56 bg-gradient-to-br from-blue-700 to-cyan-500 flex items-center justify-center text-6xl">
-                💻
+
+              {/* Banner */}
+              <div className="h-44 flex items-center justify-center text-7xl bg-gradient-to-br from-cyan-600/20 to-blue-600/20">
+                {project.emoji}
               </div>
 
-              <div className="p-7">
-                <h3 className="text-white text-2xl font-bold">{project.title}</h3>
-                <p className="text-gray-400 mt-4">{project.description}</p>
+              {/* Content */}
+              <div className="p-6">
+
+                <h3 className="text-2xl font-bold text-white">
+                  {project.title}
+                </h3>
+
+                <p className="mt-4 text-gray-400 leading-7">
+                  {project.description}
+                </p>
 
                 <div className="flex flex-wrap gap-2 mt-6">
-                  {project.tech.map((item, i) => (
-                    <span key={i} className="bg-blue-500/20 text-cyan-300 px-3 py-1 rounded-full text-sm">
-                      {item}
+
+                  {project.tech.map((tech) => (
+
+                    <span
+                      key={tech}
+                      className="
+                        px-3
+                        py-1.5
+                        rounded-full
+                        bg-cyan-500/10
+                        border
+                        border-cyan-500/20
+                        text-cyan-300
+                        text-sm
+                      "
+                    >
+                      {tech}
                     </span>
+
                   ))}
+
                 </div>
 
-                <div className="flex justify-between mt-8">
-                  <a href={project.github} className="text-white text-2xl hover:text-blue-400">
+                {/* Buttons */}
+                <div className="flex gap-4 mt-8">
+
+                  <a
+                    href={project.github}
+                    className="
+                      flex-1
+                      flex
+                      items-center
+                      justify-center
+                      gap-2
+                      py-3
+                      rounded-xl
+                      border
+                      border-white/10
+                      text-white
+                      hover:bg-white/10
+                      transition
+                    "
+                  >
                     <FaGithub />
+                    GitHub
                   </a>
-                  <a href={project.live} className="text-white text-2xl hover:text-cyan-400">
+
+                  <a
+                    href={project.live}
+                    className="
+                      flex-1
+                      flex
+                      items-center
+                      justify-center
+                      gap-2
+                      py-3
+                      rounded-xl
+                      bg-cyan-500
+                      text-white
+                      hover:bg-cyan-400
+                      transition
+                    "
+                  >
                     <FiExternalLink />
+                    Live
                   </a>
+
                 </div>
+
               </div>
+
             </motion.div>
+
           ))}
-        </motion.div>
+
+        </div>
+
       </div>
     </section>
   );

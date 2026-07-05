@@ -12,96 +12,170 @@ import {
 const timeline = [
   {
     year: "2021",
-    title: "10th — Bihar Board",
-    description: "Passed 10th Boards with First Division.",
+    title: "10th • Bihar Board",
+    description: "Passed 10th with First Division.",
     icon: FaSchool,
   },
   {
     year: "2022",
-    title: "Diploma in Computer Applications ",
-    description: "Completed Diploma in Computer Applications (DCA) .",
+    title: "DCA",
+    description: "Completed Diploma in Computer Applications.",
     icon: FaCertificate,
   },
   {
     year: "2022",
-    title: "Advanced Diploma in Computer Applications",
-    description: "Completed Advanced Diploma in Computer Applications (ADCA) with Grade A+.",
+    title: "ADCA",
+    description: "Completed Advanced Diploma with Grade A+.",
     icon: FaCertificate,
   },
-
   {
     year: "2023",
-    title: "12th — Bihar Board",
-    description: "Passed 12th Boards with First Division.",
+    title: "12th • Bihar Board",
+    description: "Passed Intermediate with First Division.",
     icon: FaSchool,
   },
   {
     year: "2023",
-    title: "ITI — Trade Electrician",
-    description: "Completed ITI in Electrician trade.",
+    title: "ITI Electrician",
+    description: "Completed ITI in Electrician Trade.",
     icon: FaBolt,
   },
   {
-    year: "2024 -2027 - Present",
+    year: "2024 - Present",
     title: "BCA Student",
-    description: "Currently pursuing Bachelor of Computer Applications with a focus on software development, IIBM (AKU Patna).",
+    description: "Bachelor of Computer Applications • IIBM, AKU Patna",
     icon: FaUniversity,
   },
   {
     year: "2026",
-    title: "Python Learning (120+ Hours)",
-    description: "Completed 120+ hours of Python learning through CampusX.",
+    title: "Python",
+    description: "120+ Hours of Python Learning (CampusX).",
     icon: FaPython,
   },
   {
     year: "2026",
-    title: "Data Science Journey",
-    description: "Learning Data Analysis, Machine Learning and Artificial Intelligence.",
+    title: "AI & Data Science",
+    description: "Learning ML, AI & Data Science.",
     icon: FaBrain,
   },
   {
     year: "Current",
     title: "Portfolio Development",
-    description: "Building modern React & Three.js portfolio projects.",
+    description: "Building Modern React & AI Projects.",
     icon: FaLaptopCode,
   },
 ];
 
 export default function Experience() {
   return (
-    <section id="experience" className="bg-[#050816] py-24 px-8">
-      <div className="max-w-5xl mx-auto">
-        <motion.h2
-          initial={{ opacity: 0, y: 40 }}
+    <section
+      id="experience"
+      className="relative bg-[#050816] py-20 lg:py-24 overflow-hidden"
+    >
+      {/* Glow */}
+      <div className="absolute left-0 top-20 w-72 h-72 rounded-full bg-cyan-500/10 blur-[120px]" />
+      <div className="absolute right-0 bottom-20 w-72 h-72 rounded-full bg-violet-500/10 blur-[120px]" />
+
+      <div className="relative max-w-5xl mx-auto px-6">
+
+        {/* Heading */}
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: .6 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-5xl font-bold text-center text-white mb-16"
+          className="text-center mb-16"
         >
-          My Journey
-        </motion.h2>
+          <span className="text-cyan-400 uppercase tracking-[6px]">
+            Journey
+          </span>
 
-        <div className="border-l-2 border-blue-500/40 pl-8 relative">
-          {timeline.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.12, duration: 0.6 }}
-              whileHover={{ x: 6 }}
-              className="mb-12 relative group"
-            >
-              <div className="absolute -left-[45px] top-1 w-9 h-9 rounded-full bg-[#0b1120] border-2 border-blue-500 flex items-center justify-center shadow-[0_0_20px_#3b82f6] group-hover:shadow-[0_0_30px_#22d3ee] group-hover:border-cyan-400 transition-all duration-300">
-                <item.icon className="text-cyan-400 text-sm" />
-              </div>
+          <h2 className="mt-4 text-4xl md:text-5xl font-bold text-white">
+            My Learning Timeline
+          </h2>
+        </motion.div>
 
-              <p className="text-cyan-400 font-semibold">{item.year}</p>
-              <h3 className="text-2xl font-bold text-white mt-2">{item.title}</h3>
-              <p className="text-gray-400 mt-3">{item.description}</p>
-            </motion.div>
-          ))}
+        {/* Timeline */}
+
+        <div className="relative border-l border-cyan-500/30 ml-5">
+
+          {timeline.map((item, index) => {
+
+            const Icon = item.icon;
+
+            return (
+              <motion.div
+                key={index}
+                initial={{
+                  opacity: 0,
+                  x: -25,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  x: 0,
+                }}
+                transition={{
+                  delay: index * .08,
+                }}
+                viewport={{ once: true }}
+                className="relative pl-10 pb-10"
+              >
+
+                <div
+                  className="
+                    absolute
+                    -left-5
+                    top-1
+                    w-10
+                    h-10
+                    rounded-full
+                    bg-[#0B1120]
+                    border
+                    border-cyan-500
+                    flex
+                    items-center
+                    justify-center
+                    shadow-[0_0_18px_rgba(34,211,238,.35)]
+                  "
+                >
+                  <Icon className="text-cyan-400 text-sm" />
+                </div>
+
+                <div
+                  className="
+                    rounded-2xl
+                    border
+                    border-white/10
+                    bg-white/5
+                    backdrop-blur-xl
+                    p-5
+                    hover:border-cyan-400/40
+                    hover:shadow-[0_0_25px_rgba(34,211,238,.25)]
+                    transition-all
+                  "
+                >
+                  <p className="text-cyan-400 text-sm font-semibold">
+                    {item.year}
+                  </p>
+
+                  <h3 className="mt-2 text-xl font-bold text-white">
+                    {item.title}
+                  </h3>
+
+                  <p className="mt-3 text-gray-400 leading-7">
+                    {item.description}
+                  </p>
+
+                </div>
+
+              </motion.div>
+            );
+
+          })}
+
         </div>
+
       </div>
     </section>
   );

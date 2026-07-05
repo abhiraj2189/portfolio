@@ -1,9 +1,23 @@
 import { motion } from "framer-motion";
 import RadarChart from "../ui/RadarChart";
 
-const skills = [
-  "Python", "Data Science", "Machine Learning", "Artificial Intelligence",
-  "SQL", "Git & GitHub", "HTML5", "CSS3", "JavaScript", "React",
+const categories = [
+  {
+    title: "Programming",
+    skills: ["Python", "JavaScript", "SQL"],
+  },
+  {
+    title: "AI & Data",
+    skills: ["Machine Learning", "AI", "Data Science"],
+  },
+  {
+    title: "Frontend",
+    skills: ["React", "HTML5", "CSS3"],
+  },
+  {
+    title: "Tools",
+    skills: ["Git", "GitHub", "VS Code"],
+  },
 ];
 
 const proficiency = [
@@ -11,64 +25,132 @@ const proficiency = [
   { label: "Data Science", value: 65 },
   { label: "Machine Learning", value: 60 },
   { label: "SQL", value: 78 },
-  { label: "React / JS", value: 70 },
-  { label: "Git & GitHub", value: 80 },
+  { label: "React", value: 70 },
+  { label: "Git", value: 80 },
 ];
-
-const container = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
-const item = {
-  hidden: { opacity: 0, y: 30, scale: 0.9 },
-  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
-};
 
 export default function Skills() {
   return (
-    <section id="skills" className="min-h-screen bg-[#050816] px-8 py-24">
-      <div className="max-w-7xl mx-auto">
-        <motion.h2
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-5xl font-bold text-white mb-16 text-center"
-        >
-          My Skills
-        </motion.h2>
+    <section
+      id="skills"
+      className="relative overflow-hidden bg-[#050816] py-20 lg:py-24"
+    >
+      {/* Glow */}
+      <div className="absolute left-0 top-20 w-72 h-72 rounded-full bg-cyan-500/10 blur-[120px]" />
+      <div className="absolute right-0 bottom-20 w-72 h-72 rounded-full bg-blue-500/10 blur-[120px]" />
+
+      <div className="relative max-w-7xl mx-auto px-6">
+
+        {/* Heading */}
 
         <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-          className="grid md:grid-cols-2 lg:grid-cols-5 gap-8"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: .6 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
         >
-          {skills.map((skill, index) => (
+          <span className="text-cyan-400 uppercase tracking-[6px]">
+            Skills
+          </span>
+
+          <h2 className="mt-4 text-4xl md:text-5xl font-bold text-white">
+            Technologies I Work With
+          </h2>
+        </motion.div>
+
+        {/* Skill Cards */}
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          {categories.map((category, index) => (
+
             <motion.div
               key={index}
-              variants={item}
-              whileHover={{ scale: 1.08, y: -10 }}
-              transition={{ type: "spring", stiffness: 250 }}
-              className="relative overflow-hidden rounded-3xl p-8 cursor-pointer border border-blue-500/30 bg-white/5 backdrop-blur-xl shadow-[0_0_25px_rgba(59,130,246,0.15)] hover:shadow-[0_0_50px_rgba(59,130,246,0.7)] hover:border-cyan-400 duration-500"
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * .1 }}
+              viewport={{ once: true }}
+              whileHover={{
+                y: -6,
+              }}
+              className="
+                rounded-3xl
+                border
+                border-white/10
+                bg-white/5
+                backdrop-blur-xl
+                p-6
+                hover:border-cyan-400/40
+                hover:shadow-[0_0_25px_rgba(34,211,238,.25)]
+                transition-all
+              "
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-cyan-400/5 to-transparent opacity-0 hover:opacity-100 transition duration-500" />
-              <h3 className="relative text-blue-300 text-2xl font-bold tracking-wide">{skill}</h3>
-              <p className="relative text-gray-400 mt-3 text-sm">Professional Learning</p>
+              <h3 className="text-xl font-bold text-cyan-400 mb-5">
+                {category.title}
+              </h3>
+
+              <div className="flex flex-wrap gap-2">
+
+                {category.skills.map((skill) => (
+
+                  <span
+                    key={skill}
+                    className="
+                      px-3
+                      py-2
+                      rounded-full
+                      bg-cyan-500/10
+                      text-cyan-300
+                      text-sm
+                      border
+                      border-cyan-500/20
+                    "
+                  >
+                    {skill}
+                  </span>
+
+                ))}
+
+              </div>
+
             </motion.div>
+
           ))}
+
+        </div>
+
+        {/* Radar Chart */}
+
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: .7 }}
+          viewport={{ once: true }}
+          className="
+            mt-16
+            rounded-3xl
+            border
+            border-white/10
+            bg-white/5
+            backdrop-blur-xl
+            p-6
+            lg:p-10
+          "
+        >
+
+          <h3 className="text-3xl text-center font-bold text-white">
+            Skill Overview
+          </h3>
+
+          <p className="text-center text-gray-400 mt-2 mb-8">
+            Current proficiency across my primary technologies
+          </p>
+
+          <RadarChart data={proficiency} />
+
         </motion.div>
 
-        {/* Skill Proficiency Radar Chart */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8 }}
-          className="mt-24 rounded-3xl border border-cyan-500/20 bg-white/5 backdrop-blur-xl p-10 shadow-[0_0_30px_rgba(59,130,246,0.15)]"
-        >
-          <h3 className="text-3xl font-bold text-white text-center mb-2">Skill Proficiency</h3>
-          <p className="text-gray-400 text-center mb-8">A visual overview of my core strengths</p>
-          <RadarChart data={proficiency} />
-        </motion.div>
       </div>
     </section>
   );

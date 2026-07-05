@@ -5,89 +5,140 @@ import Counter from "../ui/Counter";
 const certifications = [
   {
     icon: FaShieldAlt,
-    title: "Introduction to Cybersecurity",
+    title: "Cybersecurity Basics",
     issuer: "Cisco Networking Academy",
   },
   {
     icon: FaGoogle,
-    title: "Google & Gemini Student Ambassador",
+    title: "Google Gemini Ambassador",
     issuer: "Google",
   },
   {
     icon: FaAward,
     title: "ADCA V — Grade A+",
-    issuer: "Advanced Diploma in Computer Applications",
+    issuer: "Computer Applications Diploma",
   },
 ];
 
 const stats = [
-  { value: 120, suffix: "+", label: "Hours of Python" },
-  { value: 3, suffix: "+", label: "Projects Built" },
-  { value: 10, suffix: "+", label: "Skills Learned" },
+  { value: 120, suffix: "+", label: "Python Hours" },
+  { value: 3, suffix: "+", label: "Projects" },
+  { value: 10, suffix: "+", label: "Skills" },
   { value: 3, suffix: "", label: "Certifications" },
 ];
 
-const container = { hidden: {}, show: { transition: { staggerChildren: 0.15 } } };
-const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
-};
-
 export default function Certifications() {
   return (
-    <section id="certifications" className="bg-[#0b1120] py-24 px-8 relative overflow-hidden">
-      <div className="absolute top-0 left-1/3 w-[400px] h-[400px] rounded-full bg-cyan-500/10 blur-[150px]" />
+    <section
+      id="certifications"
+      className="relative bg-[#050816] py-20 lg:py-24 overflow-hidden"
+    >
+      {/* Glow */}
+      <div className="absolute top-0 left-1/3 w-72 h-72 bg-cyan-500/10 blur-[120px] rounded-full" />
+      <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-violet-500/10 blur-[120px] rounded-full" />
 
-      <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
-        className="max-w-7xl mx-auto relative"
-      >
-        <motion.h2 variants={fadeUp} className="text-5xl font-bold text-center text-white mb-6">
-          Certifications & Achievements
-        </motion.h2>
-        <motion.p variants={fadeUp} className="text-gray-400 text-center max-w-2xl mx-auto mb-16">
-          Verified credentials and milestones from my learning journey.
-        </motion.p>
+      <div className="relative max-w-7xl mx-auto px-6">
 
-        {/* Animated Stats */}
-        <motion.div variants={container} className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-14"
+        >
+          <span className="text-cyan-400 uppercase tracking-[6px] text-sm">
+            Achievements
+          </span>
+
+          <h2 className="mt-4 text-4xl md:text-5xl font-bold text-white">
+            Certifications & Milestones
+          </h2>
+        </motion.div>
+
+        {/* Stats */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
+
           {stats.map((s, i) => (
             <motion.div
               key={i}
-              variants={fadeUp}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
+              viewport={{ once: true }}
               whileHover={{ y: -6 }}
-              className="text-center rounded-2xl border border-cyan-500/20 bg-white/5 backdrop-blur-xl p-8 shadow-[0_0_25px_rgba(59,130,246,0.1)] hover:shadow-[0_0_35px_rgba(34,211,238,0.4)] hover:border-cyan-400/50 transition-all duration-500"
+              className="
+                rounded-2xl
+                border
+                border-white/10
+                bg-white/5
+                backdrop-blur-xl
+                p-6
+                text-center
+                hover:border-cyan-400/40
+                hover:shadow-[0_0_25px_rgba(34,211,238,.2)]
+                transition-all
+              "
             >
-              <h3 className="text-4xl font-extrabold text-cyan-400">
+              <h3 className="text-3xl lg:text-4xl font-bold text-cyan-400">
                 <Counter to={s.value} suffix={s.suffix} />
               </h3>
-              <p className="text-gray-400 mt-2 text-sm">{s.label}</p>
+              <p className="text-gray-400 text-sm mt-2">
+                {s.label}
+              </p>
             </motion.div>
           ))}
-        </motion.div>
 
-        {/* Certification Cards */}
-        <motion.div variants={container} className="grid md:grid-cols-3 gap-8">
-          {certifications.map((c, i) => (
-            <motion.div
-              key={i}
-              variants={fadeUp}
-              whileHover={{ y: -8, scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 250 }}
-              className="rounded-3xl border border-blue-500/20 bg-white/5 backdrop-blur-xl p-8 shadow-[0_0_20px_rgba(59,130,246,.15)] hover:shadow-[0_0_45px_rgba(59,130,246,.5)] hover:border-cyan-400/50 duration-500"
-            >
-              <div className="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center mb-6">
-                <c.icon className="text-cyan-400 text-2xl" />
-              </div>
-              <h3 className="text-white text-xl font-bold leading-snug">{c.title}</h3>
-              <p className="text-gray-400 mt-3 text-sm">{c.issuer}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-      </motion.div>
+        </div>
+
+        {/* Certifications */}
+        <div className="grid md:grid-cols-3 gap-6">
+
+          {certifications.map((c, i) => {
+
+            const Icon = c.icon;
+
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.12 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -8, scale: 1.02 }}
+                className="
+                  rounded-3xl
+                  border
+                  border-white/10
+                  bg-white/5
+                  backdrop-blur-xl
+                  p-6
+                  lg:p-8
+                  hover:border-cyan-400/40
+                  hover:shadow-[0_0_35px_rgba(34,211,238,.25)]
+                  transition-all
+                "
+              >
+                <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-400/20 flex items-center justify-center mb-5">
+                  <Icon className="text-cyan-400 text-xl" />
+                </div>
+
+                <h3 className="text-white font-bold text-lg">
+                  {c.title}
+                </h3>
+
+                <p className="text-gray-400 text-sm mt-2">
+                  {c.issuer}
+                </p>
+
+              </motion.div>
+            );
+
+          })}
+
+        </div>
+
+      </div>
     </section>
   );
 }

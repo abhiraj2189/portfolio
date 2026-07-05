@@ -1,73 +1,156 @@
 import { motion } from "framer-motion";
-import { FaPython, FaGoogle, FaCertificate, FaGraduationCap } from "react-icons/fa";
+import {
+  FaPython,
+  FaGoogle,
+  FaCertificate,
+  FaGraduationCap,
+} from "react-icons/fa";
 
 const stats = [
-  { icon: FaGraduationCap, label: "BCA, 2nd Year", sub: "IIBM, AKU Patna" },
-  { icon: FaPython, label: "120+ Hours", sub: "Python — CampusX" },
-  { icon: FaGoogle, label: "Student Ambassador", sub: "Google & Gemini" },
-  { icon: FaCertificate, label: "Cybersecurity", sub: "Cisco Certified" },
+  {
+    icon: FaGraduationCap,
+    title: "BCA (2nd Year)",
+    subtitle: "IIBM • AKU Patna",
+  },
+  {
+    icon: FaPython,
+    title: "120+ Hours",
+    subtitle: "Python - CampusX",
+  },
+  {
+    icon: FaGoogle,
+    title: "Google",
+    subtitle: "Gemini Ambassador",
+  },
+  {
+    icon: FaCertificate,
+    title: "Cisco",
+    subtitle: "Cybersecurity",
+  },
 ];
-
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.15 } },
-};
-const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
-};
 
 export default function About() {
   return (
     <section
       id="about"
-      className="min-h-screen bg-[#0b1120] flex items-center px-8 py-24 relative overflow-hidden"
+      className="relative overflow-hidden bg-[#050816] py-20 lg:py-24"
     >
-      {/* Ambient glows */}
-      <div className="absolute top-1/4 -left-40 w-[400px] h-[400px] rounded-full bg-cyan-500/10 blur-[150px]" />
-      <div className="absolute bottom-0 -right-40 w-[400px] h-[400px] rounded-full bg-violet-500/10 blur-[150px]" />
+      {/* Background Glow */}
 
-      <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
-        className="max-w-6xl mx-auto relative"
-      >
-        <motion.p variants={fadeUp} className="text-cyan-400 uppercase tracking-[8px] text-sm mb-4">
-          Get To Know Me
-        </motion.p>
+      <div className="absolute top-0 left-0 w-72 h-72 bg-cyan-500/10 blur-[120px] rounded-full" />
 
-        <motion.h2 variants={fadeUp} className="text-5xl font-bold text-white mb-10">
-          About Me
-        </motion.h2>
+      <div className="absolute bottom-0 right-0 w-72 h-72 bg-violet-500/10 blur-[120px] rounded-full" />
 
-        <div className="grid lg:grid-cols-2 gap-14 items-start">
-          <motion.p variants={fadeUp} className="text-gray-300 text-xl leading-9">
-            I'm <span className="text-white font-semibold">Abhiraj Kumar</span>, a BCA
-            student passionate about Python, Data Science, Artificial Intelligence and
-            Machine Learning. Currently completing 120+ hours of Python learning through
-            CampusX and building real-world projects to strengthen my skills — with a
-            long-term goal of building an international tech career.
-          </motion.p>
+      <div className="relative max-w-7xl mx-auto px-6">
 
-          <motion.div variants={container} className="grid sm:grid-cols-2 gap-5">
-            {stats.map((s, i) => (
-              <motion.div
-                key={i}
-                variants={fadeUp}
-                whileHover={{ y: -6, scale: 1.03 }}
-                transition={{ type: "spring", stiffness: 250 }}
-                className="rounded-2xl border border-cyan-500/20 bg-white/5 backdrop-blur-xl p-6 shadow-[0_0_25px_rgba(59,130,246,0.1)] hover:shadow-[0_0_35px_rgba(34,211,238,0.4)] hover:border-cyan-400/50 transition-all duration-500"
-              >
-                <s.icon className="text-cyan-400 text-3xl mb-4" />
-                <h3 className="text-white font-bold text-lg">{s.label}</h3>
-                <p className="text-gray-400 text-sm mt-1">{s.sub}</p>
-              </motion.div>
-            ))}
+        {/* Heading */}
+
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: .6 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <span className="text-cyan-400 uppercase tracking-[6px] text-sm">
+            About Me
+          </span>
+
+          <h2 className="text-4xl md:text-5xl font-bold text-white mt-5">
+            Passionate About Building AI
+          </h2>
+        </motion.div>
+
+        {/* Layout */}
+
+        <div className="grid lg:grid-cols-2 gap-14 items-center">
+
+          {/* Left */}
+
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: .7 }}
+            viewport={{ once: true }}
+          >
+            <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8">
+
+              <p className="text-gray-300 leading-8 text-lg">
+
+                Hi, I'm{" "}
+
+                <span className="font-semibold text-cyan-400">
+                  Abhiraj Kumar
+                </span>
+
+                , a BCA student who loves building AI applications using
+                Python, Machine Learning, Data Science and Modern Web
+                Technologies.
+
+                <br />
+                <br />
+
+                My goal is to become an AI Engineer and create products
+                that solve real-world problems while continuously learning
+                new technologies.
+
+              </p>
+
+            </div>
           </motion.div>
+
+          {/* Right */}
+
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: .7 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-2 gap-5"
+          >
+            {stats.map((item, index) => {
+
+              const Icon = item.icon;
+
+              return (
+                <motion.div
+                  key={index}
+                  whileHover={{
+                    y: -8,
+                    scale: 1.04,
+                  }}
+                  className="
+                    rounded-3xl
+                    border
+                    border-white/10
+                    bg-white/5
+                    backdrop-blur-xl
+                    p-6
+                    transition-all
+                    duration-300
+                    hover:border-cyan-400/40
+                    hover:shadow-[0_0_30px_rgba(34,211,238,.25)]
+                  "
+                >
+                  <Icon className="text-4xl text-cyan-400 mb-5" />
+
+                  <h3 className="text-white font-bold">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-gray-400 text-sm mt-2">
+                    {item.subtitle}
+                  </p>
+
+                </motion.div>
+              );
+
+            })}
+          </motion.div>
+
         </div>
-      </motion.div>
+
+      </div>
     </section>
   );
 }

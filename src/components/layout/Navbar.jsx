@@ -1,80 +1,111 @@
 import { useState } from "react";
-import { motion, AnimatePresence, useScroll } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import { navLinks } from "../../constants";
+import { motion, AnimatePresence } from "framer-motion";
+import { HiMenuAlt3, HiX } from "react-icons/hi";
 
-export default function Navbar() {
-  const { scrollYProgress } = useScroll();
-  const [open, setOpen] = useState(false);
+const tabs = [
+  { id: "about", label: "About" },
+  { id: "skills", label: "Skills" },
+  { id: "projects", label: "Projects" },
+  { id: "experience", label: "Experience" },
+  { id: "github", label: "GitHub" },
+  { id: "certifications", label: "Certificates" },
+  { id: "contact", label: "Contact" },
+];
+
+export default function Navbar({ activeTab, setActiveTab }) {
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <motion.nav
-      initial={{ y: -70, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.7 }}
-      className="fixed top-0 left-0 w-full z-50 bg-[#050816]/75 backdrop-blur-xl border-b border-white/10"
-    >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-5 sm:px-8 py-4 md:py-5">
-        <a
-          href="#"
-          className="text-xl md:text-2xl font-bold text-cyan-400 tracking-wide"
-        >
-          Abhiraj
-        </a>
+    <>
+      <motion.header
+        initial={{ y: -80 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="fixed top-0 left-0 w-full z-50"
+      >
+        <div className="max-w-7xl mx-auto px-5 lg:px-8 py-4">
 
-        {/* Desktop */}
-        <ul className="hidden md:flex gap-10">
-          {navLinks.map((link) => (
-            <li key={link.id} className="relative group">
-              <a
-                href={`#${link.id}`}
-                className="text-gray-300 group-hover:text-cyan-300 transition"
+          <div className="rounded-2xl border border-white/10 bg-[#050816]/70 backdrop-blur-2xl shadow-xl">
+
+            <div className="flex items-center justify-between h-16 px-6">
+
+              {/* Logo */}
+              <motion.h1
+                whileHover={{ scale: 1.05 }}
+                className="text-2xl font-bold cursor-pointer"
               >
-                {link.title}
-              </a>
+                <span className="text-white">Abhiraj</span>
+                <span className="text-cyan-400">.</span>
+              </motion.h1>
 
-              <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-gradient-to-r from-cyan-400 to-blue-500 group-hover:w-full transition-all duration-300" />
-            </li>
-          ))}
-        </ul>
+              {/* Desktop Navigation */}
+              <div className="hidden lg:flex items-center gap-2">
 
-        {/* Mobile Button */}
-        <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden text-white"
-        >
-          {open ? <X size={28} /> : <Menu size={28} />}
-        </button>
-      </div>
+                {tabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`px-4 py-2 rounded-xl transition-all duration-300 ${
+                      activeTab === tab.id
+                        ? "bg-cyan-500 text-white shadow-[0_0_20px_rgba(0,229,255,.5)]"
+                        : "text-gray-300 hover:bg-white/10 hover:text-white"
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
 
-      {/* Mobile Menu */}
+              </div>
+
+              {/* Mobile Menu Button */}
+              <button
+                className="lg:hidden text-white text-3xl"
+                onClick={() => setMenuOpen(!menuOpen)}
+              >
+                {menuOpen ? <HiX /> : <HiMenuAlt3 />}
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+      </motion.header>
+
+      {/* Mobile Drawer */}
       <AnimatePresence>
-        {open && (
+
+        {menuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
-            className="md:hidden bg-[#050816]/95 backdrop-blur-xl border-t border-white/10"
+            className="fixed top-24 left-5 right-5 z-40 rounded-2xl border border-white/10 bg-[#0B1120]/95 backdrop-blur-2xl p-5 lg:hidden"
           >
-            {navLinks.map((link) => (
-              <a
-                key={link.id}
-                href={`#${link.id}`}
-                onClick={() => setOpen(false)}
-                className="block px-6 py-4 text-gray-300 hover:text-cyan-400 border-b border-white/5"
-              >
-                {link.title}
-              </a>
-            ))}
+            <div className="flex flex-col gap-3">
+
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => {
+                    setActiveTab(tab.id);
+                    setMenuOpen(false);
+                  }}
+                  className={`text-left px-4 py-3 rounded-xl transition-all duration-300 ${
+                    activeTab === tab.id
+                      ? "bg-cyan-500 text-white"
+                      : "text-gray-300 hover:bg-white/10"
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+
+            </div>
           </motion.div>
         )}
-      </AnimatePresence>
 
-      {/* Scroll Progress */}
-      <motion.div
-        style={{ scaleX: scrollYProgress }}
-        className="h-[2px] origin-left bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500"
-      />
-    </motion.nav>
+      </AnimatePresence>
+    </>
   );
 }
