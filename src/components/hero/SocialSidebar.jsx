@@ -68,7 +68,7 @@ export default function SocialSidebar() {
             h-14
             rounded-2xl
             bg-white/5
-            backdrop-blur-xl
+            backdrop-blur-sm lg:backdrop-blur-xl
             border
             border-white/10
             flex

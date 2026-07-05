@@ -58,7 +58,7 @@ export default function Hero({ activeTab, setActiveTab }) {
 
         <div className="mt-12 hidden lg:flex justify-center">
 
-          <div className="flex flex-wrap justify-center gap-3 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 p-3">
+          <div className="flex flex-wrap justify-center gap-3 rounded-2xl bg-white/5 backdrop-blur-sm lg:backdrop-blur-xl border border-white/10 p-3">
 
             {tabs.map((tab) => (
 

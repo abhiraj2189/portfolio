@@ -15,7 +15,7 @@ export default function GlassCard({ setActiveTab }) {
         <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-blue-500/10 to-violet-500/20 blur-3xl" />
 
         {/* Glass */}
-        <div className="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-2xl p-6 sm:p-8 lg:p-10">
+        <div className="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm lg:backdrop-blur-2xl p-6 sm:p-8 lg:p-10">
 
           <motion.span
             initial={{ opacity: 0 }}

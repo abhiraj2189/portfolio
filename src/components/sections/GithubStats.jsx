@@ -82,7 +82,7 @@ export default function GithubStats() {
                   bg-white/5
                   border
                   border-white/10
-                  backdrop-blur-xl
+                  backdrop-blur-sm lg:backdrop-blur-xl
                   hover:border-cyan-400/40
                   hover:shadow-[0_0_20px_rgba(34,211,238,.25)]
                   transition-all
@@ -113,7 +113,7 @@ export default function GithubStats() {
               border
               border-white/10
               bg-white/5
-              backdrop-blur-xl
+              backdrop-blur-sm lg:backdrop-blur-xl
               p-4
             "
           >
@@ -133,7 +133,7 @@ export default function GithubStats() {
               border
               border-white/10
               bg-white/5
-              backdrop-blur-xl
+              backdrop-blur-sm lg:backdrop-blur-xl
               p-4
             "
           >

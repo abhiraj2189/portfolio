@@ -38,7 +38,7 @@ export default function Hero() {
 
           {/* Social icons */}
           <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 z-30">
-            <div className="flex flex-col gap-5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 p-4">
+            <div className="flex flex-col gap-5 rounded-full bg-white/5 backdrop-blur-sm lg:backdrop-blur-xl border border-white/10 p-4">
               <FaGithub className="text-2xl text-white hover:text-cyan-400 cursor-pointer" />
               <FaLinkedin className="text-2xl text-white hover:text-cyan-400 cursor-pointer" />
               <FaInstagram className="text-2xl text-white hover:text-cyan-400 cursor-pointer" />
@@ -55,7 +55,7 @@ export default function Hero() {
           transition={{ duration: 1 }}
         >
 
-          <div className="rounded-3xl backdrop-blur-2xl bg-white/5 p-10 border border-white/10">
+          <div className="rounded-3xl backdrop-blur-sm lg:backdrop-blur-2xl bg-white/5 p-10 border border-white/10">
 
             <span className="px-5 py-2 rounded-full bg-white/10 text-cyan-300 text-sm">
               👋 Hello I'm

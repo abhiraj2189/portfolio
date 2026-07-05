@@ -25,7 +25,7 @@ export default function Navbar({ activeTab, setActiveTab }) {
       >
         <div className="max-w-7xl mx-auto px-5 lg:px-8 py-4">
 
-          <div className="rounded-2xl border border-white/10 bg-[#050816]/70 backdrop-blur-2xl shadow-xl">
+          <div className="rounded-2xl border border-white/10 bg-[#050816]/95 lg:bg-[#050816]/70 backdrop-blur-none lg:backdrop-blur-2xl shadow-xl">
 
             <div className="flex items-center justify-between h-16 px-6">
 

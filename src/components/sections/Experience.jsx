@@ -148,7 +148,7 @@ export default function Experience() {
                     border
                     border-white/10
                     bg-white/5
-                    backdrop-blur-xl
+                    backdrop-blur-sm lg:backdrop-blur-xl
                     p-5
                     hover:border-cyan-400/40
                     hover:shadow-[0_0_25px_rgba(34,211,238,.25)]

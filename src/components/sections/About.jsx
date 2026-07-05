@@ -73,7 +73,7 @@ export default function About() {
             transition={{ duration: .7 }}
             viewport={{ once: true }}
           >
-            <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8">
+            <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm lg:backdrop-blur-xl p-8">
 
               <p className="text-gray-300 leading-8 text-lg">
 
@@ -124,7 +124,7 @@ export default function About() {
                     border
                     border-white/10
                     bg-white/5
-                    backdrop-blur-xl
+                    backdrop-blur-sm lg:backdrop-blur-xl
                     p-6
                     transition-all
                     duration-300

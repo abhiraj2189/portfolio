@@ -27,7 +27,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="bg-white/5 backdrop-blur-xl border border-cyan-500/20 rounded-3xl p-8 shadow-[0_0_30px_rgba(59,130,246,.15)]"
+            className="bg-white/5 backdrop-blur-sm lg:backdrop-blur-xl border border-cyan-500/20 rounded-3xl p-8 shadow-[0_0_30px_rgba(59,130,246,.15)]"
           >
             <div className="space-y-8">
               <div className="flex items-center gap-5">
@@ -70,7 +70,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="bg-white/5 backdrop-blur-xl border border-cyan-500/20 rounded-3xl p-8 shadow-[0_0_30px_rgba(59,130,246,.15)] space-y-6"
+            className="bg-white/5 backdrop-blur-sm lg:backdrop-blur-xl border border-cyan-500/20 rounded-3xl p-8 shadow-[0_0_30px_rgba(59,130,246,.15)] space-y-6"
           >
             <input type="text" placeholder="Your Name" className="w-full bg-[#111827] border border-gray-700 rounded-xl px-5 py-4 text-white outline-none focus:border-cyan-400 transition-colors" />
             <input type="email" placeholder="Your Email" className="w-full bg-[#111827] border border-gray-700 rounded-xl px-5 py-4 text-white outline-none focus:border-cyan-400 transition-colors" />

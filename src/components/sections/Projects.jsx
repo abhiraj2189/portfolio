@@ -80,7 +80,7 @@ export default function Projects() {
                 border
                 border-white/10
                 bg-white/5
-                backdrop-blur-xl
+                backdrop-blur-sm lg:backdrop-blur-xl
                 overflow-hidden
                 hover:border-cyan-400/40
                 hover:shadow-[0_0_35px_rgba(34,211,238,.25)]

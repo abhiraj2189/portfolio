@@ -72,7 +72,7 @@ export default function Certifications() {
                 border
                 border-white/10
                 bg-white/5
-                backdrop-blur-xl
+                backdrop-blur-sm lg:backdrop-blur-xl
                 p-6
                 text-center
                 hover:border-cyan-400/40
@@ -111,7 +111,7 @@ export default function Certifications() {
                   border
                   border-white/10
                   bg-white/5
-                  backdrop-blur-xl
+                  backdrop-blur-sm lg:backdrop-blur-xl
                   p-6
                   lg:p-8
                   hover:border-cyan-400/40
