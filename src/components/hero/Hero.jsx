@@ -1,96 +1,103 @@
 import { motion } from "framer-motion";
-import FloatingPhoto from "./FloatingPhoto";
-import GlassCard from "./GlassCard";
-import SocialSidebar from "./SocialSidebar";
+import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
+import photo from "../../assets/images/photo.png";
 
-const tabs = [
-  { id: "about", label: "About" },
-  { id: "skills", label: "Skills" },
-  { id: "projects", label: "Projects" },
-  { id: "experience", label: "Experience" },
-  { id: "github", label: "GitHub" },
-  { id: "certifications", label: "Certificates" },
-  { id: "contact", label: "Contact" },
-];
+const fadeUp = {
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
 
-export default function Hero({ activeTab, setActiveTab }) {
+export default function Hero() {
   return (
-    <section className="relative bg-[#050816] overflow-hidden">
+    <section
+      id="hero"
+      className="relative bg-[#0b0f14] pt-28 pb-16 lg:pt-36 lg:pb-24"
+    >
+      <div className="max-w-6xl mx-auto px-5 lg:px-8 grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
 
-      {/* Background */}
-      <div className="absolute -top-40 -left-40 w-[300px] h-[300px] lg:w-[650px] lg:h-[650px] rounded-full bg-cyan-500/15 blur-[50px] lg:blur-[120px]" />
+        {/* LEFT — simple text intro */}
+        <motion.div
+          initial="hidden"
+          animate="show"
+          variants={fadeUp}
+        >
+          <p className="font-mono-ui text-sm text-[#f5a623] mb-4">
+            👋 Welcome to my portfolio
+          </p>
 
-      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] lg:w-[650px] lg:h-[650px] rounded-full bg-violet-500/15 blur-[50px] lg:blur-[120px]" />
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-[#e6edf3]">
+            Hi, I'm <span className="text-[#f5a623]">Abhiraj</span>
+          </h1>
 
-      <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.08)_1px,transparent_1px)] bg-[size:60px_60px]" />
+          <p className="mt-4 text-xl lg:text-2xl font-semibold text-[#8ab4f8]">
+            Python & AI Developer
+          </p>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-5 lg:px-10 pt-28 pb-14">
+          <p className="mt-6 text-[#8b98a5] leading-8 max-w-lg">
+            I'm a BCA student passionate about building AI applications with
+            Python, Machine Learning and modern web technologies. Also a{" "}
+            <span className="text-[#e6edf3] font-medium">
+              Google Gemini Student Ambassador
+            </span>{" "}
+            working towards becoming an AI Engineer.
+          </p>
 
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-
-          {/* LEFT */}
           <motion.div
-            initial={{ x: -80, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: .8 }}
-            className="relative flex justify-center"
+            initial="hidden"
+            animate="show"
+            variants={fadeUp}
+            transition={{ delay: 0.15 }}
+            className="flex items-center gap-3 mt-8"
           >
-            <FloatingPhoto />
-
-            <div className="hidden lg:block">
-              <SocialSidebar />
-            </div>
-
+            <a
+              href="#projects"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="px-5 py-3 rounded-md bg-[#f5a623] text-[#0b0f14] font-semibold text-sm hover:bg-[#ffb84d] transition-colors"
+            >
+              View Projects
+            </a>
+            <a
+              href="/resume.pdf"
+              download="Abhiraj_Resume.pdf"
+              className="px-5 py-3 rounded-md border border-[#232b36] text-[#e6edf3] font-semibold text-sm hover:border-[#3a4655] hover:bg-[#12171f] transition-colors"
+            >
+              Download Resume
+            </a>
           </motion.div>
+        </motion.div>
 
-          {/* RIGHT */}
-          <motion.div
-            initial={{ x: 80, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: .8 }}
-          >
-            <GlassCard setActiveTab={setActiveTab} />
-          </motion.div>
-
-        </div>
-
-        {/* Premium Tab Navigation */}
-
-        <div className="mt-12 hidden lg:flex justify-center">
-
-          <div className="flex flex-wrap justify-center gap-3 rounded-2xl bg-white/5 backdrop-blur-sm lg:backdrop-blur-xl border border-white/10 p-3">
-
-            {tabs.map((tab) => (
-
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`
-                  px-4
-                  lg:px-5
-                  py-2.5
-                  rounded-xl
-                  text-sm
-                  lg:text-base
-                  duration-300
-                  ${
-                    activeTab === tab.id
-                      ? "bg-cyan-500 text-white shadow-[0_0_20px_#00E5FF]"
-                      : "text-gray-300 hover:bg-cyan-500 hover:text-white"
-                  }
-                `}
-              >
-                {tab.label}
-              </button>
-
-            ))}
-
+        {/* RIGHT — photo */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="flex flex-col items-center gap-6"
+        >
+          <div className="relative">
+            <div className="absolute -inset-2 rounded-2xl border border-[#f5a623]/30" />
+            <img
+              src={photo}
+              alt="Abhiraj Kumar"
+              className="relative w-[220px] sm:w-[260px] lg:w-[300px] rounded-2xl object-cover border border-[#232b36]"
+            />
           </div>
 
-        </div>
-
+          <div className="flex items-center gap-3">
+            <a href="https://github.com/abhiraj2189" target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full border border-[#232b36] flex items-center justify-center text-[#e6edf3] hover:border-[#f5a623]/50 hover:text-[#f5a623] transition-colors">
+              <FaGithub />
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full border border-[#232b36] flex items-center justify-center text-[#e6edf3] hover:border-[#f5a623]/50 hover:text-[#f5a623] transition-colors">
+              <FaLinkedin />
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full border border-[#232b36] flex items-center justify-center text-[#e6edf3] hover:border-[#f5a623]/50 hover:text-[#f5a623] transition-colors">
+              <FaInstagram />
+            </a>
+          </div>
+        </motion.div>
       </div>
-
     </section>
   );
 }
